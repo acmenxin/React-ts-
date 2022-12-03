@@ -3,6 +3,7 @@ import styles from "./App.module.css"
 import Robot from './components/Robots';
 import logo from "./assets/images/logo.svg"
 import ShoppingCart from "./components/ShoppingCard"
+import RobotDisCount from "./components/RobotsDiscount"
 
 interface Props {
 
@@ -40,13 +41,15 @@ const App: React.FC<Props> = (props) => {
       <ShoppingCart />
       {(!error || error !== "") && <div>网站出错：{error}</div>}
       {!loading ? (
-        <ul className={styles.robotList}>
-          {robotGallery.map((item) => {
-            return (
-              <Robot id={item.id} name={item.name} email={item.email} />
-            )
-          })}
-        </ul>) 
+         <div className={styles.robotList}>
+         {robotGallery.map((item, index) =>
+           index % 2 === 0 ? (
+             <RobotDisCount id={item.id} email={item.email} name={item.name} />
+           ) : (
+             <Robot id={item.id} email={item.email} name={item.name} />
+           )
+         )}
+       </div>) 
         :(<h2>loading 加载中</h2>)
       }
     </div>
