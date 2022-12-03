@@ -10,7 +10,8 @@ interface Props {
 interface State {
   robotGallery: any[]
 }
-const App: React.FC = (props) => {
+
+const App: React.FC<Props> = (props) => {
   const [robotGallery, setRobotGallery] = useState<any>([])
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>()
